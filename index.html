@@ -125,7 +125,7 @@
           <div class="panel">
             <div class="tabs is-boxed">
               <ul>
-                <li class="is-active">
+                <li>
                   <a>
                     <span class="icon is-small"><i class="fas fa-clipboard-list" aria-hidden="true"></i></span>
                     <span>Current</span>
@@ -143,7 +143,7 @@
                     <span>Upcoming</span>
                   </a>
                 </li>
-                <li>
+                <li class="is-active">
                   <a>
                     <span class="icon is-small"><i class="fas fa-calendar" aria-hidden="true"></i></span>
                     <span>All</span>
@@ -159,23 +159,23 @@
                 </span>
               </p>
             </div>
-            <label class="panel-block">
+            <a class="panel-block">
               <input type="checkbox" checked>
-              Make Bulma great again
-            </label>
-            <label class="panel-block">
+              <span>Make Bulma great again</span>
+            </a>
+            <a class="panel-block">
               <input type="checkbox">
-              Add some more features
-            </label>
-            <label class="panel-block">
+            <span>Add some more features</span>
+            </a>
+            <a class="panel-block">
               <input type="checkbox">
-              Make a github account
-            </label>
-            <label class="panel-block">
+            <span>Make a github account</span>
+            </a>
+            <a class="panel-block">
               <input type="checkbox">
-              Learn how to use github
-            </label>
-            <label class="panel-block">
+            <span>Learn how to use github</span>
+            </a>
+            <a class="panel-block">
               <input type="checkbox">
               add a .gitignore file
             </label>
@@ -224,21 +224,42 @@
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script>
-    // $(".fas,.fab").animate({
-    //   "color":"red",
-    //   "font-size":"2em"
-    // });
-    // $(".fas,.fab").css({
-    //   "color":"red",
-    //   "font-size":"2em"
-    // });
-    $(".panel-tabs a").click(function () {
-      $(".panel-tabs a").removeClass("is-active")
-      $(this).addClass("is-active")
-    });
-
-  </script>
+    <script>
+    
+    
+      //To strike and unstrike the checked elements
+      $(".panel-block input:checked + span").wrap("<strike>");
+      $(document).ready(function(){
+          $( "a.panel-block").click(
+        function() {  
+          if($(".panel-block input[type=checkbox]").is(':checked')){
+              $("strike").contents().unwrap();
+              $(".panel-block input:checked + span").wrap("<strike>");
+  
+          }
+          else{
+              $("strike").contents().unwrap();
+          }
+      })
+      // Code for switching tabs to see which are completed,current and upcoming
+      $(".panel .tabs li").click(function(){
+              $(".panel .tabs li.is-active").removeClass("is-active");
+              $(this).addClass("is-active");
+              if($(this).text().trim().includes("Current")){
+                  $(".panel-block").show();
+                  $(":checked").closest(".panel-block").hide();
+              }
+              else if($(this).text().trim().includes("Completed")){
+                  $(".panel-block").show();
+                  $("input:not(:checked)").closest(".panel-block").hide();  
+              }
+              else{
+                  $(".panel-block").show();
+              }
+      });
+      })
+  
+    </script>
 
 </body>
 
