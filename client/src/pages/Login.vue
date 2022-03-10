@@ -1,40 +1,51 @@
 <script setup lang="ts">
 import { Login } from '../models/session';
-let userName: any;
-let password: any;
+import { ref } from 'vue'
+let userName = ref('');
+let password = ref('');
 function login() {
-    userName = document.getElementsByTagName("input")[0].value
-    password = document.getElementsByTagName("input")[1].value
-    Login(userName, password)
+    Login(userName.value, password.value)
 }
 </script>
 
 <template>
-    <div class="section login">
-        <form @submit.prevent="login">
-            <h1 class="title">Login Page</h1>
-            <input class="input is-primary username" placeholder="username" :v-model="userName"/>
-            <input class="input is-primary password" placeholder="Password" :v-model="password" />
-            <br />
-            <button class="button is-primary">
-                <span class="icon">
-                    <i class="fa fa-sign-in"></i>
-                </span>
-                <span>Login</span>
-            </button>
+    <section class="section">      
+       <div class="columns">
+       <div class="column is-4 is-offset-4">
+           <form @submit.prevent="login">
+		  <div class="field">
+		  <p class="control has-icons-left has-icons-right">
+		    <input class="input" placeholder="Username" v-model="userName">
+		    <span class="icon is-small is-left">
+		      <i class="fa fa-envelope"></i>
+		    </span>
+		    <span class="icon is-small is-right">
+		      <i class="fa fa-check"></i>
+		    </span>
+		  </p>
+		</div>
+		<div class="field">
+		  <p class="control has-icons-left">
+		    <input class="input" type="password" placeholder="Password" v-model="password">
+		    <span class="icon is-small is-left">
+		      <i class="fa fa-lock"></i>
+		    </span>
+		  </p>
+		</div>
+		<div class="field">
+		  <p class="control">
+		    <button class="button is-success">
+		      Login
+		    </button>
+		  </p>
+		</div>
         </form>
-    </div>
+      </div>         
+       </div>
+      </section>
 </template>
 
 
 <style scoped lang="css">
-.is-primary {
-    width: 30%;
-    margin: 10px;
-    align-content: center;
-    display: flex;
-}
-.login {
-    text-align: center;
-}
+
 </style>

@@ -6,7 +6,7 @@ export interface User {
     email: string;
     picture: string;
     id: number;
-    userTasks : Array<String>;
+    userTasks : any;
 }
 
 export const list: User[] = [
@@ -19,8 +19,9 @@ export const list: User[] = [
         email: 'l@gmail.com',
         picture: 'https://randomuser.me/api/portraits/lego/4.jpg',
         userTasks: [
-            'Need to update vue',
-            'Need to update pinia'
+            {task : 'Need to update vue', isCompleted: true},
+            {task : 'Need to update pinia', isCompleted: false},
+            {task : 'Need to update express', isCompleted: true}
         ]
     },
     {
@@ -32,8 +33,8 @@ export const list: User[] = [
         email: 'lyagami@gmail.com',
         picture: 'https://randomuser.me/api/portraits/lego/5.jpg',
         userTasks: [
-            'Need to update react',
-            'Need to update angular'
+            {task : 'Need to update angular', taskStatus:'Current'},
+            {task : 'Need to update react', taskStatus:'Completed'}
         ]
     },
     {
@@ -45,8 +46,8 @@ export const list: User[] = [
         email: 'l@gmail.com',
         picture: 'https://randomuser.me/api/portraits/lego/2.jpg',
         userTasks: [
-            'Need to update jQuery',
-            'Need to update ajax'
+            {task : 'Need to update jQuery', taskStatus:'Current'},
+            {task : 'Need to update ajax', taskStatus:'Completed'}
         ]
     }
 ]
