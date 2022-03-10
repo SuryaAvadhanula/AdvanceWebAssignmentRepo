@@ -19,9 +19,9 @@ export const list: User[] = [
         email: 'l@gmail.com',
         picture: 'https://randomuser.me/api/portraits/lego/4.jpg',
         userTasks: [
-            {task : 'Need to update vue', isCompleted: true},
-            {task : 'Need to update pinia', isCompleted: false},
-            {task : 'Need to update express', isCompleted: true}
+            {task : 'Need to update vue',dueDate:'04/21/2022', isCompleted: true},
+            {task : 'Need to update pinia',dueDate:'05/18/2022', isCompleted: false},
+            {task : 'Need to update express',dueDate:'03/11/2022', isCompleted: true}
         ]
     },
     {
@@ -33,8 +33,8 @@ export const list: User[] = [
         email: 'lyagami@gmail.com',
         picture: 'https://randomuser.me/api/portraits/lego/5.jpg',
         userTasks: [
-            {task : 'Need to update angular', taskStatus:'Current'},
-            {task : 'Need to update react', taskStatus:'Completed'}
+            {task : 'Need to update angular',dueDate:'03/21/2022', isCompleted: false},
+            {task : 'Need to update react',dueDate:'03/26/2022', isCompleted: false}
         ]
     },
     {
@@ -46,8 +46,8 @@ export const list: User[] = [
         email: 'l@gmail.com',
         picture: 'https://randomuser.me/api/portraits/lego/2.jpg',
         userTasks: [
-            {task : 'Need to update jQuery', taskStatus:'Current'},
-            {task : 'Need to update ajax', taskStatus:'Completed'}
+            {task : 'Need to update jQuery',dueDate:'04/05/2022', isCompleted: false},
+            {task : 'Need to update ajax',dueDate:'03/25/2022', isCompleted: false}
         ]
     }
 ]
