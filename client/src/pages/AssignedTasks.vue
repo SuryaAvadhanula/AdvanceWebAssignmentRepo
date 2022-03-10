@@ -9,21 +9,23 @@ let dueDate = ref('');
 let assignedTo = ref('');
 let userTaskArray = session.user?.userTasks; 
 let allTasks = reactive(session.user != null?session.user.userTasks:null);
-var tasks= reactive(session.user != null?session.user.userTasks:null);
+let tasks= reactive(session.user != null?session.user.userTasks:null);
+let assignedUser: any;
 //let tasks: Array<string>;
 console.log(users.list);
 
 function addTask(this: any){
         const user = users.list.find(u => u.id+"" == assignedTo.value);
-        console.log(assignedTo.value);
-        // addToCurrentTask = "mohan sandeep";
+        assignedUser = session.user?.handle
+        console.log(assignedUser);
         console.log(user)
         user?.userTasks.unshift({ 
           task: newTaskName.value,
           dueDate: dueDate.value,
-          isCompleted: false
+          isCompleted: false,
+          assignedBy: assignedUser
         })
-
+        console.log(user)
         if(session.user?.id+"" == assignedTo.value ){
             this.tasks = user?.userTasks;
         }
@@ -123,13 +125,16 @@ function taskHandler(this: any, currentTab : any){
              <thead>
                     <tr>
                         <th>
-                            <abbr title="Position">Title</abbr>
+                            <abbr title="title">Title</abbr>
                         </th>
                         <th>
-                            <abbr title="Played">Due Date</abbr>
+                            <abbr title="dueDate">Due Date(yyyy/mm/dd)</abbr>
                         </th>
                         <th>
-                            <abbr title="Won">Assigned To</abbr>
+                            <abbr title="assignedTo">Assigned To</abbr>
+                        </th>
+                        <th>
+                            <abbr title="assignedBy">Assigned by</abbr>
                         </th>
                         <th>
                             <abbr title="completed">Completed</abbr>
@@ -144,6 +149,7 @@ function taskHandler(this: any, currentTab : any){
                         <td>{{ task.task }}</td>
                         <td>{{ task.dueDate }}</td>
                         <td>{{session.user?.handle}}</td>
+                        <td>{{task.assignedBy}}</td>
                         <td><a class="panel-block" :class="{ 'is-completed': currentTab != 'Completed' && task.isCompleted }"><input type="checkbox" v-model="task.isCompleted" /></a></td>
                   </tr>
                 <!-- </a> -->
