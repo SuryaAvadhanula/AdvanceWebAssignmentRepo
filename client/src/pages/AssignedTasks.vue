@@ -28,14 +28,7 @@ function addTask(this: any){
         console.log(user)
         if(session.user?.id+"" == assignedTo.value ){
             this.tasks = user?.userTasks;
-        }
-        
-      //   allTasks.unshift({
-      //     task: newTaskName.value,
-      //     dueDate: dueDate.value,
-      //     isCompleted: false
-      // });
-      //this.tasks = this.allTasks;
+        }        
 }
 
 function taskHandler(this: any, currentTab : any){
