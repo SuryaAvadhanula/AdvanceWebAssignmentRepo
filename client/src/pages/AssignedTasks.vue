@@ -2,7 +2,6 @@
 import session from "../models/session";
 import { ref, reactive, onMounted } from 'vue';
 import * as users from "../models/user"
-
 let currentTab= ref('All');
 let newTaskName = ref('');
 let dueDate = ref('');
@@ -13,7 +12,6 @@ let tasks= reactive(session.user != null?session.user.userTasks:null);
 let assignedUser: any;
 //let tasks: Array<string>;
 console.log(users.list);
-
 function addTask(this: any){
         const user = users.list.find(u => u.id+"" == assignedTo.value);
         assignedUser = session.user?.handle
@@ -30,7 +28,6 @@ function addTask(this: any){
             this.tasks = user?.userTasks;
         }        
 }
-
 function taskHandler(this: any, currentTab : any){
   if (this.currentTab.includes('Current')) {
             this.tasks = this.allTasks.filter((task: any) => !task.isCompleted);
@@ -42,9 +39,6 @@ function taskHandler(this: any, currentTab : any){
             this.tasks = this.allTasks;
           }
 }
-
-
-
 </script>
 
 <template>
