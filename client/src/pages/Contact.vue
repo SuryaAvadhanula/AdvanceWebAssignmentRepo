@@ -1,8 +1,16 @@
 <script setup lang="ts">
 import {ref} from 'vue'
+const response = ref('')
+const username = ref('')
+const email = ref('')
 const message = ref('')
+
 function formSubmit() {
-    message.value = "Thanks for your review. It will be addressed shortly"
+    response.value = "Thanks for your review. It will be addressed shortly";
+    username.value = ""
+    email.value = ""
+    message.value = ""
+
 }
 
 </script>
@@ -13,7 +21,7 @@ function formSubmit() {
         <div class="field">
             <label for="name" class="label is-size-4 has-text-weight-light"></label>
             <div class="control has-icons-left">
-                <input type="text" name="name" id="name" class="input" placeholder="Name" autofocus>
+                <input type="text" name="name" id="name" class="input" placeholder="Name" autofocus v-model="username">
                     <span class="icon is-left">
                         <i class="fa fa-user"></i>
                     </span>
@@ -22,7 +30,7 @@ function formSubmit() {
         <div class="field">
             <label for="email" class="label is-size-4 has-text-weight-light"></label>
             <div class="control has-icons-left">
-                <input type="email" name="email" id="email" class="input" placeholder="Email">
+                <input type="email" name="email" id="email" class="input" placeholder="Email" v-model='email'>
                     <span class="icon is-left">
                         <i class="fa fa-envelope"></i>
                     </span>
@@ -30,12 +38,12 @@ function formSubmit() {
         </div>
         <div class="field">
             <label for="message" class="label is-size-4 has-text-weight-light"></label>
-            <textarea name="message" id="message" rows="5" class="textarea is-medium" placeholder="Message"></textarea>
+            <textarea name="message" id="message" rows="5" class="textarea is-medium" placeholder="Message" v-model="message"></textarea>
         </div>
         <button type="submit" class="button is-success is-size-5">Submit</button>
     </form>
     <hr>
-    <h1 class="title">{{message}}</h1>
+    <h1 class="title">{{response}}</h1>
 </div>
 </template>
 

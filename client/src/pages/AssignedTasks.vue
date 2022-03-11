@@ -27,7 +27,10 @@ function addTask(){
         console.log(user)
         if(session.user?.id+"" == assignedTo.value ){
             tasks.value = user?.userTasks;
-        }        
+        }
+        newTaskName.value = ''
+        dueDate.value = ''
+        assignedTo.value = ''       
 }
 function taskHandler( tab : string){
   currentTab.value = tab
