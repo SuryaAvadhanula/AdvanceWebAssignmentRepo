@@ -16,7 +16,7 @@ function formSubmit() {
 </script>
 <template>
     <div class="container my-5 mt-5 mx-5 px-5">
-    <h2 class="title is-2 is-capitalized">Contact Us</h2>
+    <h2 class="title is-2 is-capitalized">Report an issue</h2>
     <form @submit.prevent="formSubmit" method="post">
         <div class="field">
             <label for="name" class="label is-size-4 has-text-weight-light"></label>
