@@ -12,7 +12,7 @@ export interface User {
 export const list: User[] = [
     {
         id: 1,
-        handle: 'Ryuk',
+        handle: 'Lawliet',
         firstName: 'Lawliet',
         lastName: 'Ryuzaki',
         password: 'Deathnote',
@@ -29,7 +29,7 @@ export const list: User[] = [
         handle: 'Kira',
         firstName: 'Light',
         lastName: 'Yagami',
-        password: 'Deathnote',
+        password: 'Shinigami',
         email: 'lyagami@gmail.com',
         picture: 'https://randomuser.me/api/portraits/lego/5.jpg',
         userTasks: [
@@ -39,10 +39,10 @@ export const list: User[] = [
     },
     {
         id: 3,
-        handle: 'OnePiece',
+        handle: 'Luffy',
         firstName: 'Monkey',
         lastName: 'Luffy',
-        password: 'OP',
+        password: 'OnePiece',
         email: 'l@gmail.com',
         picture: 'https://randomuser.me/api/portraits/lego/2.jpg',
         userTasks: [
