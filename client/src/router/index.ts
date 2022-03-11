@@ -7,6 +7,7 @@ import Login from '../pages/Login.vue';
 import session from "../models/session";
 import AssignedTasks from "../pages/AssignedTasks.vue";
 import AllTasks from "../pages/AllTasks.vue"
+import Contact from "../pages/Contact.vue";
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -17,7 +18,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/messages', component: () => import('../pages/Wall.vue') },
   { path: '/signup', component: Generic, props: { title: 'Signup Page!' } },
   { path: '/about', component: Generic, props: { title: 'About Page!' } },
-  { path: '/contact', component: Generic, props: { title: 'Contact Page!' } },
+  { path: '/contact', component: Contact },
   { path: '/assignedtasks', component: AssignedTasks },
   { path: '/viewAllTasks', component: AllTasks }
 ]
@@ -33,11 +34,19 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-    if (['/messages', '/wall', '/assignedtasks'].includes(to.path)) {
-        if (!session.user) {
-            return '/login';
-        }
-    }
+  if(session.destinationUrl == null && to.path != '/login') {
+      session.destinationUrl = to.path;
+  }
+  console.log({ to });
+  const protectedUrls = ['/assignedtasks', '/viewAllTasks', '/feed', '/hidden'];
+  console.log({ protectedUrls });
+
+  if (protectedUrls.includes(to.path)) { // list of paths that require login
+      console.log('requires login');
+      if (!session.user) {
+          return '/login';
+      }
+  }
 })
 
 export default router;

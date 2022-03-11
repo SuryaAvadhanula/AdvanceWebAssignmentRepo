@@ -3,19 +3,19 @@ import session from "../models/session";
 import { ref, reactive, onMounted } from 'vue';
 import * as users from "../models/user"
 
-let currentTab= ref('All');
-let newTaskName = ref('');
-let dueDate = ref('');
-let assignedTo = ref('');
-let userTaskArray = session.user?.userTasks; 
-let allTasks = reactive(session.user != null?session.user.userTasks:null);
-let tasks= reactive(session.user != null?session.user.userTasks:null);
-let assignedUser: any;
-let allUserTasks = users.list
+const currentTab= ref('All');
+const newTaskName = ref('');
+const dueDate = ref('');
+const assignedTo = ref('');
+const userTaskArray = session.user?.userTasks; 
+const allTasks = ref(session.user != null?session.user.userTasks:null);
+const tasks= ref(session.user != null?session.user.userTasks:null);
+const assignedUser =  ref(null as string | null | undefined);
+const allUserTasks = users.list
 
-function addTask(this: any){
+function addTask(){
         const user = users.list.find(u => u.id+"" == assignedTo.value);
-        assignedUser = session.user?.handle
+        assignedUser.value = session.user?.handle
         console.log(assignedUser);
         console.log(user)
         user?.userTasks.unshift({ 
@@ -26,7 +26,7 @@ function addTask(this: any){
         })
         console.log(user)
         if(session.user?.id+"" == assignedTo.value ){
-            this.tasks = user?.userTasks;
+            tasks.value = user?.userTasks;
         }
         
       //   allTasks.unshift({
@@ -37,15 +37,15 @@ function addTask(this: any){
       //this.tasks = this.allTasks;
 }
 
-function taskHandler(this: any, currentTab : any){
-  if (this.currentTab.includes('Current')) {
-            this.tasks = this.allTasks.filter((task: any) => !task.isCompleted);
+function taskHandler(currentTab : any){
+  if (currentTab.includes('Current')) {
+            tasks.value = allTasks.filter((task: any) => !task.isCompleted);
           }
-          else if (this.currentTab.includes('Completed')) {
-            this.tasks = this.allTasks.filter((task: any) => task.isCompleted);
+          else if (currentTab.includes('Completed')) {
+            tasks.value = allTasks.filter((task: any) => task.isCompleted);
           }
           else {
-            this.tasks = this.allTasks;
+            tasks.value = allTasks;
           }
 }
 
@@ -57,44 +57,16 @@ function taskHandler(this: any, currentTab : any){
     <div class="container">
       <div class="columns">
         <div class="column">
-          <div class="panel">
-            <div class="tabs is-boxed">
-              <ul>
-                <li :class='{ "is-active": currentTab == "Current" }' @click="currentTab = 'Current',taskHandler('Current')">
-                  <a>
-                    <span class="icon ">
-                      <i class="fas fa-clipboard-list" aria-hidden="true"></i>
-                    </span>
-                    <span>Current</span>
-                  </a>
-                </li>
-                <li :class='{ "is-active": currentTab == "Completed" }' @click="currentTab = 'Completed',taskHandler('Completed')">
-                  <a>
-                    <span class="icon ">
-                      <i class="fas fa-calendar-times" aria-hidden="true"></i>
-                    </span>
-                    <span>Completed</span>
-                  </a>
-                </li>
-                <li :class='{ "is-active": currentTab == "All" }' @click="currentTab = 'All',taskHandler('All')">
-                  <a>
-                    <span class="icon ">
-                      <i class="fas fa-calendar" aria-hidden="true"></i>
-                    </span>
-                    <span>All</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            
+          <h1 class="title">Welcome {{session.user?.handle}}</h1>
+          <div class="panel">            
             <table class="table" style="width: 100%;">
              <thead>
                     <tr>
                         <th>
-                            <abbr title="title">Title</abbr>
+                            <abbr title="title">Task Title</abbr>
                         </th>
                         <th>
-                            <abbr title="dueDate">Due Date(yyyy/mm/dd)</abbr>
+                            <abbr title="dueDate">Due Date(yyyy-mm-dd)</abbr>
                         </th>
                         <th>
                             <abbr title="assignedTo">Assigned To</abbr>

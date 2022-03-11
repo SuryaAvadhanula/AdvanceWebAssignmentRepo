@@ -7,29 +7,11 @@ const isOpen = ref(false);
 </script>
 
 <template>
-  <nav class="navbar is-info" role="navigation" aria-label="main navigation">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
-        </a>
-        <a
-          role="button"
-          class="navbar-burger"
-          aria-label="menu"
-          aria-expanded="false"
-          :class="{ 'is-active': isOpen }"
-          @click="isOpen = !isOpen"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
+  <nav class="navbar is-outlined navHeaderbg" role="navigation" aria-label="main navigation">
+    <div class="container homepagebg">
       <div class="navbar-menu" :class="{ 'is-active': isOpen }">
         <div class="navbar-start">
-          <router-link class="navbar-item" to="/">Home</router-link>
-          <router-link class="navbar-item" to="/messages">Messages</router-link>
+          <router-link class="navbar-item" to="/">Home</router-link>  
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Tasks</a>
             <div class="navbar-dropdown">
@@ -41,10 +23,8 @@ const isOpen = ref(false);
             <a class="navbar-link">More</a>
             <div class="navbar-dropdown">
               <router-link class="navbar-item" to="/about">About</router-link>
-              <a class="navbar-item">Jobs</a>
-              <router-link class="navbar-item" to="/contact">Contact</router-link>
               <hr class="navbar-divider" />
-              <a class="navbar-item">Report an issue</a>
+              <router-link class="navbar-item" to="/contact">Report an issue</router-link>
             </div>
           </div>
         </div>
@@ -60,4 +40,22 @@ const isOpen = ref(false);
 </template>
 
 <style>
+.dark{
+  background-color: #000000;
+}
+.navbar-item, .navbar-link {
+  color: #FFFFFF;
+}
+.container .white{
+  background: #FFFFFF !important;
+}
+.navHeaderbg{
+  background: -webkit-linear-gradient(#8CA6DB, #B993D6);
+  background: linear-gradient(#8CA6DB, #B993D6);
+}
+.window {
+  margin-top: 2em;
+  width: 100%;
+}
+
 </style>

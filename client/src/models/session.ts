@@ -5,6 +5,7 @@ import { reactive } from "vue";
 
 const session = reactive({
     user: null as users.User | null,
+    destinationUrl: null as string | null,
 })
 
 export async function Login(handle: string, password: string) {
@@ -16,7 +17,7 @@ export async function Login(handle: string, password: string) {
         throw { message: "Password Incorrect" };
     }
     session.user = user;
-    router.push('/messages');
+    router.push(session.destinationUrl  ?? '/');
 }
 export function Logout() {
     session.user = null;
