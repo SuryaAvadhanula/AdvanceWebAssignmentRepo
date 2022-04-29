@@ -1,49 +1,56 @@
 <script setup lang="ts">
-import session from "../models/session";
+import {useSession} from "../models/session";
+import {Task, userTasks} from "../models/task";
 import { ref, reactive, onMounted } from 'vue';
-import * as users from "../models/user"
+// import * as users from "../models/user"
 import { User } from "../models/user";
+const session = useSession();
+const taskSession = userTasks();
 const currentTab= ref('All');
 const newTaskName = ref('');
 const dueDate = ref('');
 const assignedTo = ref('');
-const userTaskArray = session.user?.userTasks; 
-const allTasks = reactive(session.user != null?session.user.userTasks:null);
-const tasks = ref(session.user != null?session.user.userTasks:null);
-const assignedUser = ref(null as string | null | undefined);
+let users:any = ref([]);
+let tasks: any = ref([]);
+
+session.fetchAllUsers().then(() =>{
+    users.value = session.users;
+})
+
 //let tasks: Array<string>;
-console.log(users.list);
 function addTask(){
-        const user = users.list.find(u => u.id+"" == assignedTo.value);
-        assignedUser.value = session.user?.handle
-        console.log(assignedUser);
-        console.log(user)
-        user?.userTasks.unshift({ 
+        let task: Task = {
           task: newTaskName.value,
           dueDate: dueDate.value,
           isCompleted: false,
-          assignedBy: assignedUser
-        })
-        console.log(user)
-        if(session.user?.id+"" == assignedTo.value ){
-            tasks.value = user?.userTasks;
+          assignedBy: session.user?._id,
+          assignedTo: assignedTo.value
         }
+        taskSession.createTask(task)
         newTaskName.value = ''
         dueDate.value = ''
         assignedTo.value = ''       
 }
+    taskSession.fetchAllTasks().then(() =>{
+      tasks.value = taskSession.list;
+        })
 function taskHandler( tab : string){
   currentTab.value = tab
-  if (currentTab.value.includes('Current')) {
-            tasks.value = allTasks.filter((task: any) => !task.isCompleted);
+
+        if (currentTab.value.includes('Current')) {
+            tasks.value = taskSession.list.filter((task: any) => !task.isCompleted);
           }
           else if (currentTab.value.includes('Completed')) {
-            tasks.value = allTasks.filter((task: any) => task.isCompleted);
+            tasks.value = taskSession.list.filter((task: any) => task.isCompleted);
           }
           else {
-            tasks.value = allTasks;
+            tasks.value = taskSession.list;
           }
+
+
 }
+
+taskHandler("All")
 </script>
 
 <template>
@@ -97,7 +104,7 @@ function taskHandler( tab : string){
                   </div><br>
                   <div class="control has-icons-left is-expanded">
                     <select class="input is-primary" type="text" placeholder="Select User" v-model="assignedTo">
-                      <option v-for="userlst in users.list" :key="userlst.firstName" v-bind:value="userlst.id">{{userlst.firstName}}</option>
+                      <option v-for="userlst in users" :key="userlst.handle" v-bind:value="userlst._id">{{userlst.handle}}</option>
                     </select>
                     <span class="icon is-left">
                       <i class="fas fa-book-reader" aria-hidden="true"></i>
@@ -155,4 +162,4 @@ function taskHandler( tab : string){
 </template>
 
 <style scoped>
-</style>
+</style> -->

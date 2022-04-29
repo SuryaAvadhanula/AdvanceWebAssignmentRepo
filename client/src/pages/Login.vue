@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { Login } from '../models/session';
+import { useSession } from '../models/session';
 import { ref } from 'vue'
 const userName = ref('');
 const password = ref('');
+const session = useSession()
 function login() {
-    Login(userName.value, password.value)
+    session.Login(userName.value, password.value)
 }
 </script>
 
@@ -21,6 +22,7 @@ function login() {
 
       </div>
       <div><button class='ghost-round full-width'>Login</button></div>
+      
 	  </form>
     </div>
   </div>

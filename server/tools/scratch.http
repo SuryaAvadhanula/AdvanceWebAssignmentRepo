@@ -1,0 +1,61 @@
+http://localhost:3001
+
+###
+GET http://localhost:3001/api/users/
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZiMzEwOWYxOTM0MzBhNmVlNzFiN2QiLCJmaXJzdE5hbWUiOiJEb25hbGQiLCJsYXN0TmFtZSI6IkNocmlzdGlhbiIsImhhbmRsZSI6Im5ld3BhbHR6X2JlbmV2b2xlbnQiLCJlbWFpbCI6InByZXNpZGVudEBuZXdwYWx0ei5lZHUiLCJwaWMiOiJodHRwczovL3JhbmRvbXVzZXIubWUvYXBpL3BvcnRyYWl0cy9tZW4vMi5qcGciLCJpZCI6NCwiaWF0IjoxNjUxMTkyMDkyfQ._pm1Vs2SB1CTYbeSIgNTxrH5564zzInIf08Ol4W1NFo
+
+###
+GET http://localhost:3001/api/users/626b3109f193430a6ee71b7d
+
+###
+GET http://localhost:3001/api/users/handle/newpaltz_benevolent
+
+###
+
+DELETE  http://localhost:3001/api/users/626b3109f193430a6ee71b7d
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZiMzEwOWYxOTM0MzBhNmVlNzFiN2QiLCJmaXJzdE5hbWUiOiJEb25hbGQiLCJsYXN0TmFtZSI6IkNocmlzdGlhbiIsImhhbmRsZSI6Im5ld3BhbHR6X2JlbmV2b2xlbnQiLCJlbWFpbCI6InByZXNpZGVudEBuZXdwYWx0ei5lZHUiLCJwaWMiOiJodHRwczovL3JhbmRvbXVzZXIubWUvYXBpL3BvcnRyYWl0cy9tZW4vMi5qcGciLCJpZCI6NCwiaWF0IjoxNjUxMTkyMDkyfQ._pm1Vs2SB1CTYbeSIgNTxrH5564zzInIf08Ol4W1NFo
+
+###
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Surya",
+  "lastName": "Avadhanula",
+  "handle": "Surya",
+  "password": "Surya",
+  "email": "Surya@gmail.com",
+  "pic": "https://randomuser.me/api/portraits/men/2.jpg"
+}
+
+###
+PATCH http://localhost:3001/api/users/626b31c2f193430a6ee71b7e
+Content-Type: application/json
+
+{
+  "lastName": "Surya",
+  "password": "Surya",
+  "email": "Surya@Surya.com"
+}
+
+###
+POST http://localhost:3001/api/users/login
+Content-Type: application/json
+
+{
+  "email": "Surya@gmail.com",
+  "password": "Surya"
+}
+
+###
+POST http://localhost:3001/api/users/seed
+
+###
+GET  http://localhost:3001/api/users/getAllUsers
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZiMzFjMmYxOTM0MzBhNmVlNzFiN2UiLCJmaXJzdE5hbWUiOiJEb25hbGQiLCJsYXN0TmFtZSI6IlN1cnlhIiwiaGFuZGxlIjoibmV3cGFsdHpfYmVuZXZvbGVudCIsImVtYWlsIjoiU3VyeWFAU3VyeWEuY29tIiwicGljIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvbWVuLzIuanBnIiwiaWQiOjUsImlhdCI6MTY1MTIwNTU1OH0.egYs7ZEEk9gSmW2i5QXaMA8o9Mji93nYjJhc6K3x8gE
+
+###
+https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=9783c8f2be7a1d806aff6b1d9b738ea6
+
+###
+https://api.coinbase.com/v2/exchange-rates

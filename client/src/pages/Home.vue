@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import session from "../models/session";
+import {useSession} from "../models/session";
+const session = useSession()
 const user = session.user?.handle;
 </script>
 
