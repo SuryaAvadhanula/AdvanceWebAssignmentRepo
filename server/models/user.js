@@ -1,5 +1,3 @@
-/* B"H
-*/
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { db, isConnected, ObjectId } = require('./mongo');
@@ -37,6 +35,13 @@ const list = [
         id: 3,
     },
 ];
+async function createUser(userDetails){
+    const user = await collection.insertOne(userDetails);
+    if(!user){
+        throw { statusCode: 404, message: 'User not found' };
+    }
+    return { ...user, password: undefined };
+}
 
 async function get(id){
     const user = await collection.findOne({ _id: new ObjectId(id) });
@@ -115,9 +120,9 @@ module.exports = {
     collection, 
     seed,
     getByHandle,
+    createUser,
     async create(user) {
         user.id = ++hieghstId;
-
         if(!user.handle){
             throw { statusCode: 400, message: 'Handle is required' };
         }
@@ -138,6 +143,6 @@ module.exports = {
     },
     async getUsers(){
         return (await collection.find().toArray()).map(x=> ({_id:x._id,handle: x.handle }) );
-    }
+    },
 }
 module.exports.get = get;

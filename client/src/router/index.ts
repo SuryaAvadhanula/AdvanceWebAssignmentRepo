@@ -8,6 +8,7 @@ import { useSession } from "../models/session";
 import AssignedTasks from "../pages/AssignedTasks.vue";
 import AllTasks from "../pages/AllTasks.vue"
 import Contact from "../pages/Contact.vue";
+import SignUp from "../pages/Signup.vue";
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -16,11 +17,11 @@ const routes: RouteRecordRaw[] = [
   { path: '/', component: Home },
   { path: '/login', component: Login },
   { path: '/messages', component: () => import('../pages/Wall.vue') },
-  { path: '/signup', component: Generic, props: { title: 'Signup Page!' } },
   { path: '/about', component: Generic, props: { title: 'About Page!' } },
   { path: '/contact', component: Contact },
   { path: '/assignedtasks', component: AssignedTasks },
-  { path: '/viewAllTasks', component: AllTasks }
+  { path: '/viewAllTasks', component: AllTasks },
+  { path: '/signup', component: SignUp }
 ]
 
 // 3. Create the router instance and pass the `routes` option

@@ -12,21 +12,26 @@ const dueDate = ref('');
 const assignedTo = ref('');
 let users:any = ref([]);
 let tasks: any = ref([]);
+let userAssigned: any = ref([]);
+
 
 session.fetchAllUsers().then(() =>{
     users.value = session.users;
 })
-
 //let tasks: Array<string>;
 function addTask(){
         let task: Task = {
           task: newTaskName.value,
           dueDate: dueDate.value,
           isCompleted: false,
-          assignedBy: session.user?._id,
+          assignedBy: session.user?.handle,
           assignedTo: assignedTo.value
         }
-        taskSession.createTask(task)
+        taskSession.createTask(task).then(() =>{
+          taskSession.fetchAllTasks().then(() =>{
+            tasks.value = taskSession.list;
+        })
+        })
         newTaskName.value = ''
         dueDate.value = ''
         assignedTo.value = ''       
@@ -34,6 +39,7 @@ function addTask(){
     taskSession.fetchAllTasks().then(() =>{
       tasks.value = taskSession.list;
         })
+        console.log(taskSession)
 function taskHandler( tab : string){
   currentTab.value = tab
 
@@ -46,8 +52,6 @@ function taskHandler( tab : string){
           else {
             tasks.value = taskSession.list;
           }
-
-
 }
 
 taskHandler("All")
@@ -140,7 +144,7 @@ taskHandler("All")
                         </th>
                     </tr>
                 </thead>
-                   <tbody  v-for="task in tasks" :key="task.title">
+                   <tbody  v-for="task in tasks" :key="task.task">
              <!-- <a class="panel-block" :class="{ 'is-completed': currentTab != 'Completed' && task.isCompleted }">
                   <input type="checkbox" v-model="task.isCompleted" /> -->
                   <tr>

@@ -1,5 +1,3 @@
-/* B"H
-*/
 const express = require('express');
 const { requireAuth } = require('../models/auth');
 const app = express.Router();

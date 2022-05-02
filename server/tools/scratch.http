@@ -53,9 +53,3 @@ POST http://localhost:3001/api/users/seed
 ###
 GET  http://localhost:3001/api/users/getAllUsers
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZiMzFjMmYxOTM0MzBhNmVlNzFiN2UiLCJmaXJzdE5hbWUiOiJEb25hbGQiLCJsYXN0TmFtZSI6IlN1cnlhIiwiaGFuZGxlIjoibmV3cGFsdHpfYmVuZXZvbGVudCIsImVtYWlsIjoiU3VyeWFAU3VyeWEuY29tIiwicGljIjoiaHR0cHM6Ly9yYW5kb211c2VyLm1lL2FwaS9wb3J0cmFpdHMvbWVuLzIuanBnIiwiaWQiOjUsImlhdCI6MTY1MTIwNTU1OH0.egYs7ZEEk9gSmW2i5QXaMA8o9Mji93nYjJhc6K3x8gE
-
-###
-https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=9783c8f2be7a1d806aff6b1d9b738ea6
-
-###
-https://api.coinbase.com/v2/exchange-rates

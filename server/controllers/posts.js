@@ -1,5 +1,3 @@
-/* B"H
-*/
 const express = require('express');
 const app = express.Router();
 
@@ -38,11 +36,6 @@ app
     .patch('/:id', (req, res, next) => {
         postModel.update(req.params.id, req.body)
             .then(post => res.json({ success: true, errors: [], data: post }))
-            .catch(next);
-    })
-    .post('/seed', (req, res, next) => {
-        postModel.seed()
-            .then(post => res.status(CREATED_STATUS).json({ success: true, errors: [], data: post }))
             .catch(next);
     })
 

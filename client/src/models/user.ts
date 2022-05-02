@@ -4,8 +4,8 @@ export interface User {
     handle: string;
     password: string;
     email: string;
-    pic: string;
-    id: number;
+    pic?: string;
+    id?: number;
     token?: string;
-    _id: String;
+    _id?: String;
 }

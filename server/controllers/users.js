@@ -1,5 +1,3 @@
-/* B"H
-*/
 const express = require('express');
 const app = express.Router();
 const { requireAuth } = require('../models/auth');
@@ -33,7 +31,7 @@ app
             res.send({ success: true, errors: [], data: user });
         }).catch(next);
     })
-    .post('/', (req, res, next) => {
+    .post('/register', (req, res, next) => {
         userModel.create(req.body)
         .then(user => {
             res.status(CREATED_STATUS).send({ success: true, errors: [], data: user });

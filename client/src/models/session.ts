@@ -4,6 +4,7 @@ import * as users from "../models/user";
 import { useMessages } from "./messages";
 import { api } from "./myFetch";
 import { defineStore } from "pinia";
+import { User } from "../models/user";
 
 
 export const useSession = defineStore('session', {
@@ -23,7 +24,7 @@ export const useSession = defineStore('session', {
                         message: `Welcome back ${user.firstName}!`,
                     });
                     this.user = user;
-                    router.push(this.destinationUrl  ?? '/wall');
+                    router.push( '/wall');
                 }
             } catch (error: any) {
                 messages.notifications.push({
@@ -33,7 +34,9 @@ export const useSession = defineStore('session', {
                 console.table(messages.notifications)
             }
         },
-        
+        async Register(firstName: string, lastName: string, handle: string, password: string,email: string){
+                 await this.api("users/register", { firstName, lastName, handle, password, email});
+        },
         Logout() {
             this.user = null;
             router.push('/login');
