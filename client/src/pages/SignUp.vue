@@ -7,12 +7,13 @@ const lastName = ref('');
 const handle = ref('');
 const email = ref('');
 const password = ref('');
+const response = ref('');
 
 
 const session = useSession()
 function register() {
     session.Register(firstName.value,lastName.value,handle.value,password.value,email.value,)
-    
+    response.value = "You are registered. Please Login to Continue";
 }
 </script>
 
@@ -31,12 +32,18 @@ function register() {
         <input type='password' placeholder='Password' class='input-line full-width' v-model="password">
 
       </div>
-      <div><button class='ghost-round full-width'>Register</button></div>
+      <div>
+        <button class='ghost-round full-width'>Register</button>
+        <h2 class='submit-response'>{{response}}</h2>
+      </div>
       
 	  </form>
     </div>
+    
   </div>
+  
 </div>
+
 </template>
 
 
@@ -243,6 +250,12 @@ button:focus {
   opacity:0.1;
     background: url('https://pexels.imgix.net/photos/27718/pexels-photo-27718.jpg?fit=crop&w=1280&h=823') left no-repeat;
   background-size:cover;
+}
+
+.submit-response{
+  font-size: 15px;
+  margin-top: -5px !important;
+  color: white;
 }
 
 @media (max-width: 500px) {

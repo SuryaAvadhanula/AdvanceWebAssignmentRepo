@@ -9,6 +9,7 @@ import AssignedTasks from "../pages/AssignedTasks.vue";
 import AllTasks from "../pages/AllTasks.vue"
 import Contact from "../pages/Contact.vue";
 import SignUp from "../pages/Signup.vue";
+import Wall from "../pages/Wall.vue"
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -21,7 +22,8 @@ const routes: RouteRecordRaw[] = [
   { path: '/contact', component: Contact },
   { path: '/assignedtasks', component: AssignedTasks },
   { path: '/viewAllTasks', component: AllTasks },
-  { path: '/signup', component: SignUp }
+  { path: '/signup', component: SignUp },
+  { path: '/wall', component: Wall }
 ]
 
 // 3. Create the router instance and pass the `routes` option
