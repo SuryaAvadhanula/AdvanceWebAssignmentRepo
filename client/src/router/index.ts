@@ -23,7 +23,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/assignedtasks', component: AssignedTasks },
   { path: '/viewAllTasks', component: AllTasks },
   { path: '/signup', component: SignUp },
-  { path: '/wall', component: Wall }
+  { path: '/wall', component: Wall },
 ]
 
 // 3. Create the router instance and pass the `routes` option

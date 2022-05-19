@@ -37,6 +37,7 @@ export const useSession = defineStore('session', {
         async Register(firstName: string, lastName: string, handle: string, password: string,email: string){
                  await this.api("users/register", { firstName, lastName, handle, password, email});
         },
+        
         Logout() {
             this.user = null;
             router.push('/login');
@@ -68,6 +69,9 @@ export const useSession = defineStore('session', {
         async fetchAllUsers() {
             const users = await this.api('users/getAllUsers');
             this.users = users;
+        },
+        async fetchSearchBarUsers(value: string) {
+            return await this.api('users/getUsersBySearchBar', {value});
         },
     },
 })

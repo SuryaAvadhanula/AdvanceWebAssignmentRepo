@@ -1,4 +1,7 @@
 <script setup lang="ts">
+
+
+
 import {useSession} from "../models/session";
 import {Task, userTasks} from "../models/task";
 import { ref, reactive, onMounted } from 'vue';
@@ -13,6 +16,7 @@ const assignedTo = ref('');
 let users:any = ref([]);
 let tasks: any = ref([]);
 let userAssigned: any = ref([]);
+let value: any = ref('')
 
 
 session.fetchAllUsers().then(() =>{
@@ -55,9 +59,19 @@ function taskHandler( tab : string){
 }
 
 taskHandler("All")
+
+function filteredDataArray(){
+    session.fetchSearchBarUsers(value).then(() =>{
+    users.value = session.users;
+    console.log(users.value)
+})
+}
+
 </script>
 
 <template>
+
+<!-- Main code -->
   <div class="section">
     <div class="container">
       <div class="columns">
@@ -107,9 +121,24 @@ taskHandler("All")
                     </span>
                   </div><br>
                   <div class="control has-icons-left is-expanded">
-                    <select class="input is-primary" type="text" placeholder="Select User" v-model="assignedTo">
+                    <!-- <select class="input is-primary" type="text" placeholder="Select User" v-model="assignedTo">
                       <option v-for="userlst in users" :key="userlst.handle" v-bind:value="userlst._id">{{userlst.handle}}</option>
-                    </select>
+                    </select> -->
+                    <div class="dropdown is-hoverable">
+                    <div class="dropdown-trigger">
+                        <div class="field">
+                            <div class="control">
+                                <input 
+                                    class="input is-normal" 
+                                    type="search   
+                                    " placeholder="For" 
+                                    v-model="value"
+                                    v-on:input="filteredDataArray()"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                     <span class="icon is-left">
                       <i class="fas fa-book-reader" aria-hidden="true"></i>
                     </span>
@@ -166,4 +195,4 @@ taskHandler("All")
 </template>
 
 <style scoped>
-</style> -->
+</style> 

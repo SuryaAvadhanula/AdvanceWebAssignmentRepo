@@ -25,6 +25,12 @@ app
     //         res.send({ success: true, errors: [], data: user });
     //     }).catch(next);
     // })
+    .get('/getUsersBySearchBar', (req, res, next) => {
+        userModel.search(req)
+        .then(user => {
+            res.send({ success: true, errors: [], data: user });
+        }).catch(next);
+    })
     .get('/getAllUsers', (req, res, next) => {
         userModel.getUsers()
         .then(user => {

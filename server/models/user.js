@@ -144,5 +144,14 @@ module.exports = {
     async getUsers(){
         return (await collection.find().toArray()).map(x=> ({_id:x._id,handle: x.handle }) );
     },
+    async search(s){
+        const users = await collection.find({ $or : [
+            {firstName: { $regex: s, $options: 'i'}},
+            {lastName: { $regex: s, $options: 'i'}},
+            {handle: { $regex: s, $options: 'i'}},
+        ] }).toArray();
+
+        return users.map(user => ({...user, password: undefined}))
+    }
 }
 module.exports.get = get;
